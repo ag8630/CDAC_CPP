@@ -49,6 +49,29 @@ public:
     ~mystring() {
         delete[] str;
     }
+    mystring(mystring &&s) noexcept {
+        cout << "\n[Move Constructor Call - Data Steal Hogaya!]";
+        
+        // Direct pointer ki ownership le li
+        len = s.len;
+        str = s.str;
+
+        // Purane object ko khali kar diya
+        s.str = nullptr;
+        s.len = 0;
+    }
+
+    // Display
+    void display() const {
+        if (str != nullptr) {
+            cout << "\n String Value: " << str;
+        } else {
+            cout << "\n String Value: [EMPTY / NULLPTR]";
+        }
+    }
+
+    // Destructor
+    
 };
 
 int main() {
@@ -58,6 +81,18 @@ int main() {
 
     obj2.display();
     obj3.display();
+    // 1. Normal object banaya
+    mystring obj4("Infoway Pune");
+    
+    cout << "\n--- Move se Pehle ---";
+    cout << "\nobj1:"; obj1.display();
+
+    // 2. obj1 ke data ko obj2 me MOVE kar diya
+    mystring obj5 = std::move(obj4); 
+
+    cout << "\n\n--- Move ke Baad ---";
+    cout << "\nobj1 (Source):"; obj4.display(); // Ab ye khali ho chuka hai
+    cout << "\nobj2 (Target):"; obj5.display(); // Iske paas sara data aagaya
 
     return 0;
 }

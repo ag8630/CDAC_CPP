@@ -21,6 +21,8 @@ class myarray{
         }
         ptr[3] = 300;
     }
+
+
     ~myarray(){
         cout << "\nDestructor called for ptr: " << ptr;
         delete[]ptr;
