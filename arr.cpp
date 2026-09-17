@@ -10,6 +10,7 @@ class myarray{
     public:
     myarray(){
         size = 5;
+
         ptr = new int[size];
         for(int i =0;i<size;i++){
             ptr[i] = i+1;
@@ -21,12 +22,12 @@ class myarray{
         }
         ptr[3] = 300;
     }
-    ~myarray(){
-        cout << "\nDestructor called for ptr: " << ptr;
-        delete[]ptr;
-        ptr = nullptr;
+    // ~myarray(){
+    //     cout << "\nDestructor called for ptr: " << ptr;
+    //     delete[]ptr;
+    //     ptr = nullptr;
        
-    }
+    // }
 };
 int main(){
     myarray a1;
